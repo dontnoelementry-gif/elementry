@@ -1,0 +1,1904 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A_Z — Premium Finds</title>
+  <meta name="description" content="Handpicked premium iron pecies. Minimal. Elegant. Delivered." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  
+  <style>
+    /* ============================================================
+       DESIGN TOKENS — SWISS MINIMALIST & MATTE EDITORIAL
+    ============================================================ */
+    :root {
+      --bg:         #f2f2ef;
+      --surface-1:  #f2f2ef;
+      --surface-2:  #e8e8e3;
+      --surface-3:  #deded8;
+      --surface-4:  #cccccc;
+      --stroke-1:   #d8d8d2;
+      --stroke-2:   #b8b8b0;
+      --stroke-3:   #111111;
+      --ink:        #111111;
+      --gray-1:     #222222;
+      --gray-2:     #4a4a46;
+      --gray-3:     #767670;
+      --gray-4:     #9a9a92;
+      --gray-5:     #c2c2ba;
+      --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+      --dur-fast:   0.18s;
+      --dur-mid:    0.4s;
+      --dur-slow:   0.7s;
+      --dur-cinema: 1.0s;
+      --r-sm:  0px;
+      --r-md:  0px;
+      --r-lg:  0px;
+      --r-xl:  0px;
+    }
+
+    /* ============================================================
+       RESET
+    ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+    }
+    html {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Neue Haas Grotesk Display Pro', Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+    body {
+      overflow-x: hidden;
+      background-color: var(--bg);
+    }
+    img  { display: block; max-width: 100%; }
+    a    { text-decoration: none; color: inherit; }
+    button { font-family: inherit; }
+    ::selection { background: var(--ink); color: var(--bg); }
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track  { background: var(--bg); }
+    ::-webkit-scrollbar-thumb  { background: var(--ink); }
+
+    /* ============================================================
+       UTILITIES
+    ============================================================ */
+    .u-container {
+      width: min(1200px, 92%);
+      margin-inline: auto;
+    }
+    .u-section { padding: 8rem 0; position: relative; }
+    .u-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      text-transform: lowercase;
+      color: var(--ink);
+    }
+    .u-divider {
+      border: none;
+      border-top: 1px solid var(--stroke-1);
+    }
+
+    /* Swiss Crosshair Markers (+) */
+    .swiss-cross {
+      font-family: Inter, sans-serif;
+      font-size: 1.25rem;
+      font-weight: 400;
+      line-height: 1;
+      color: var(--ink);
+      user-select: none;
+    }
+
+    /* ============================================================
+       TYPOGRAPHY SCALE (SWISS TIGHT TRACKING)
+    ============================================================ */
+    h1, h2, h3, h4, h5, h6 {
+      letter-spacing: -0.045em;
+      line-height: 0.98;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .t-display {
+      font-size: clamp(3.2rem, 8vw, 7.2rem);
+      font-weight: 700;
+      letter-spacing: -0.055em;
+      line-height: 0.94;
+    }
+    .t-h1  { font-size: clamp(2.4rem, 5.5vw, 4.8rem); }
+    .t-h2  { font-size: clamp(1.8rem, 3.8vw, 3.2rem); }
+    .t-h3  { font-size: clamp(1.2rem, 2.4vw, 2rem); }
+    .t-body {
+      font-size: clamp(0.95rem, 1.15vw, 1.08rem);
+      line-height: 1.55;
+      letter-spacing: -0.02em;
+      color: var(--gray-2);
+      font-weight: 500;
+    }
+    .t-small { font-size: 0.82rem; color: var(--gray-3); letter-spacing: -0.01em; }
+
+    /* ============================================================
+       REVEAL SYSTEM (CLEAN, NO BLUR)
+    ============================================================ */
+    [data-reveal] {
+      will-change: opacity, transform;
+      transition:
+        opacity  var(--dur-slow) var(--ease-out),
+        transform var(--dur-slow) var(--ease-out);
+    }
+    [data-reveal="up"]    { opacity: 0; transform: translateY(24px); }
+    [data-reveal="down"]  { opacity: 0; transform: translateY(-20px); }
+    [data-reveal="left"]  { opacity: 0; transform: translateX(-24px); }
+    [data-reveal="right"] { opacity: 0; transform: translateX(24px); }
+    [data-reveal="scale"] { opacity: 0; transform: scale(0.98); }
+    [data-reveal="fade"]  { opacity: 0; }
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: none;
+    }
+    [data-delay="1"] { transition-delay: 0.06s; }
+    [data-delay="2"] { transition-delay: 0.12s; }
+    [data-delay="3"] { transition-delay: 0.18s; }
+    [data-delay="4"] { transition-delay: 0.24s; }
+    [data-delay="5"] { transition-delay: 0.30s; }
+    [data-delay="6"] { transition-delay: 0.36s; }
+
+    /* ============================================================
+       CURSOR (MINIMALIST DOT & RING)
+    ============================================================ */
+    #cursor-dot, #cursor-ring {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 10000;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.2s ease;
+    }
+    #cursor-dot {
+      width: 5px; height: 5px;
+      background: var(--ink);
+      top: 0; left: 0;
+    }
+    #cursor-ring {
+      width: 28px; height: 28px;
+      border: 1px solid rgba(17,17,17,0.35);
+      top: 0; left: 0;
+      transition: width 0.25s var(--ease-out),
+                  height 0.25s var(--ease-out),
+                  border-color 0.2s ease;
+    }
+    #cursor-ring.is-hovering {
+      width: 44px; height: 44px;
+      border-color: var(--ink);
+    }
+    @media (hover: none) {
+      #cursor-dot, #cursor-ring { display: none; }
+    }
+
+    /* ============================================================
+       LOADING SCREEN
+    ============================================================ */
+    #loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9000;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      transition: opacity 0.5s var(--ease-out), visibility 0.5s;
+    }
+    #loader.is-hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .loader-brand {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+    }
+    .loader-bar-track {
+      width: 160px; height: 1px;
+      background: var(--stroke-1);
+      overflow: hidden;
+    }
+    .loader-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--ink);
+      transition: width 0.05s linear;
+    }
+    .loader-counter {
+      font-size: 0.72rem;
+      letter-spacing: -0.02em;
+      color: var(--gray-3);
+      font-weight: 600;
+    }
+
+    /* ============================================================
+       NAVBAR (FLAT MATTE — NO GLASS)
+    ============================================================ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 800;
+      padding: 1.25rem 0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--stroke-1);
+      transition: padding var(--dur-mid) var(--ease-out);
+    }
+    .nav.is-scrolled {
+      padding: 0.85rem 0;
+      background: var(--bg);
+      border-bottom-color: var(--stroke-2);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2.2rem;
+      font-size: 0.84rem;
+      color: var(--gray-2);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    .nav-links a {
+      transition: color var(--dur-fast) ease;
+      position: relative;
+      padding: 0.15rem 0.35rem;
+    }
+    .nav-links a:hover {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    /* ============================================================
+       BUTTONS (SWISS BLOCK INVERT — NO FLOAT OR GLOW)
+    ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.78rem 1.4rem;
+      border-radius: 0;
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      cursor: pointer;
+      border: 1px solid var(--ink);
+      outline: none;
+      white-space: nowrap;
+      position: relative;
+      transition:
+        background var(--dur-fast) ease,
+        color var(--dur-fast) ease,
+        border-color var(--dur-fast) ease;
+    }
+
+    .btn-primary {
+      background: var(--ink);
+      color: var(--bg);
+    }
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--ink);
+    }
+    .btn-ghost:hover {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    .btn-sm {
+      padding: 0.52rem 1rem;
+      font-size: 0.78rem;
+    }
+
+    .nav-cta { display: block; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 5px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 20px; height: 1.5px;
+      background: var(--ink);
+      transition: transform var(--dur-mid) var(--ease-out),
+                  opacity var(--dur-fast) ease;
+    }
+    .hamburger.is-open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.is-open span:nth-child(2) { opacity: 0; width: 0; }
+    .hamburger.is-open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* Mobile drawer (Flat Matte) */
+    .nav-drawer {
+      position: fixed;
+      inset: 0;
+      z-index: 790;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s;
+    }
+    .nav-drawer.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .nav-drawer a {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+      padding: 0.4rem 1.2rem;
+      transition: background var(--dur-fast) ease, color var(--dur-fast) ease;
+    }
+    .nav-drawer a:hover {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    /* ============================================================
+       HERO (SWISS POSTER LAYOUT — REF 2 & 3)
+    ============================================================ */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 8rem 0 4rem;
+      border-bottom: 1px solid var(--stroke-1);
+    }
+
+    /* Removed glassy orb & grid; replaced with subtle Swiss registration meta bar */
+    .hero-orb, .hero-grain, .hero-grid-lines {
+      display: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: min(1200px, 92%);
+      margin-inline: auto;
+      text-align: left;
+    }
+
+    .hero-swiss-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--stroke-1);
+      padding-bottom: 1.5rem;
+      margin-bottom: 4.5rem;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+    }
+    .hero-eyebrow-dot {
+      width: 5px; height: 5px;
+      background: var(--ink);
+      border-radius: 50%;
+    }
+
+    .hero-title {
+      margin-bottom: 2rem;
+    }
+    .hero-title .line {
+      display: block;
+      overflow: hidden;
+      padding-bottom: 0.08em;
+    }
+    .hero-title .line-inner {
+      display: inline-block;
+      transform: translateY(100%);
+      opacity: 0;
+      transition:
+        transform var(--dur-cinema) var(--ease-out),
+        opacity var(--dur-cinema) var(--ease-out);
+    }
+    .hero-title .line-inner.is-visible {
+      transform: none;
+      opacity: 1;
+    }
+    .hero-title .line:nth-child(2) .line-inner { transition-delay: 0.1s; }
+
+    /* Solid black inverted block directly inspired by "the uncreative" reference */
+    .hero-title .line-accent {
+      background: var(--ink);
+      color: var(--bg);
+      padding: 0.02em 0.18em 0.08em;
+      margin-top: 0.08em;
+    }
+
+    .hero-sub {
+      max-width: 460px;
+      margin: 0 0 2.5rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-swiss-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-top: 5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--stroke-1);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--gray-2);
+    }
+
+    /* ============================================================
+       FEATURED PRODUCT
+    ============================================================ */
+    .featured {
+      overflow: hidden;
+      border-bottom: 1px solid var(--stroke-1);
+    }
+    .featured-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 78vh;
+    }
+    .featured-media {
+      position: relative;
+      overflow: hidden;
+      background: var(--surface-2);
+    }
+    .featured-media img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%) contrast(1.08);
+    }
+
+    .featured-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 4.5rem;
+      background: var(--surface-1);
+      border-left: 1px solid var(--stroke-1);
+      position: relative;
+    }
+
+    .featured-label {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1.4rem;
+    }
+    .featured-label::before {
+      content: '+';
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .featured-copy h2 { margin-bottom: 1.2rem; }
+    .featured-copy p  {
+      color: var(--gray-2);
+      line-height: 1.6;
+      margin-bottom: 2.2rem;
+      font-size: 0.98rem;
+    }
+
+    .featured-specs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--stroke-1);
+      border: 1px solid var(--stroke-1);
+      margin-top: 2.5rem;
+    }
+    .spec-item {
+      padding: 1.2rem 1rem;
+      background: var(--surface-1);
+    }
+    .spec-val {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      margin-bottom: 0.2rem;
+      color: var(--ink);
+    }
+    .spec-lbl {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--gray-3);
+    }
+
+    /* ============================================================
+       PRODUCT GRID (CLEAN ARCHITECTURAL GRID — NO GLASS/TILT)
+    ============================================================ */
+    .products-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3rem;
+      gap: 1rem;
+    }
+
+    .grid-products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--stroke-1);
+      border: 1px solid var(--stroke-1);
+    }
+
+    .product-card {
+      background: var(--surface-1);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      cursor: pointer;
+      transition: background var(--dur-fast) ease;
+    }
+    .product-card:hover { background: var(--surface-2); }
+
+    .card-media {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--stroke-1);
+    }
+    .card-media img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%);
+      transition: filter var(--dur-mid) ease;
+    }
+    .product-card:hover .card-media img {
+      filter: grayscale(0%);
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 12px; left: 12px;
+      z-index: 2;
+      font-size: 0.64rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      text-transform: lowercase;
+      color: var(--bg);
+      background: var(--ink);
+      padding: 0.22rem 0.55rem;
+    }
+
+    .card-body {
+      padding: 1.6rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .card-cat {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--gray-3);
+      margin-bottom: 0.4rem;
+    }
+    .card-body h4 {
+      font-size: 1.15rem;
+      letter-spacing: -0.035em;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+    .card-body p {
+      font-size: 0.86rem;
+      color: var(--gray-2);
+      line-height: 1.55;
+      flex: 1;
+      margin-bottom: 1.4rem;
+    }
+
+    .card-cta {
+      display: inline-flex;
+      align-items: center;
+      align-self: flex-start;
+      gap: 0.45rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      padding: 0.35rem 0.65rem;
+      border: 1px solid var(--ink);
+      transition:
+        background var(--dur-fast) ease,
+        color var(--dur-fast) ease;
+    }
+    .product-card:hover .card-cta,
+    .card-cta:hover {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    /* ============================================================
+       STORY / EDITORIAL ROWS (NUMBERED LIKE REF 4)
+    ============================================================ */
+    .story-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--stroke-1);
+      border: 1px solid var(--stroke-1);
+    }
+    .story-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--stroke-1);
+      gap: 1px;
+    }
+    .story-media {
+      overflow: hidden;
+      background: var(--surface-2);
+      position: relative;
+      min-height: 400px;
+    }
+    .story-media-parallax {
+      position: absolute;
+      inset: -12%;
+      width: 124%; height: 124%;
+    }
+    .story-media-parallax img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%);
+    }
+
+    .story-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4.5rem 4rem;
+      background: var(--surface-1);
+    }
+    .story-num {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      color: var(--ink);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .story-num::before {
+      content: '';
+      display: block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--ink);
+    }
+    .story-copy h3 { margin-bottom: 1rem; }
+    .story-copy p  {
+      color: var(--gray-2);
+      line-height: 1.6;
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+
+    .story-row.is-reversed .story-media { order: 2; }
+    .story-row.is-reversed .story-copy  { order: 1; }
+
+    /* ============================================================
+       SOCIAL PROOF
+    ============================================================ */
+    .proof-quote {
+      text-align: left;
+      padding: 5rem 4rem;
+      border: 1px solid var(--stroke-1);
+      background: var(--surface-1);
+      position: relative;
+    }
+    .proof-mark {
+      font-size: 3rem;
+      line-height: 1;
+      color: var(--ink);
+      font-weight: 800;
+      display: block;
+      margin-bottom: 1rem;
+      font-style: normal;
+    }
+    .proof-quote blockquote {
+      font-size: clamp(1.4rem, 2.8vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      max-width: 720px;
+      margin: 0 0 1.5rem;
+      color: var(--ink);
+      line-height: 1.15;
+    }
+    .proof-author {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--gray-3);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* ============================================================
+       CTA BANNER
+    ============================================================ */
+    .cta-banner {
+      border: 1px solid var(--stroke-1);
+      position: relative;
+    }
+    .cta-banner-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 2rem;
+      padding: 4.5rem 4rem;
+      background: var(--surface-1);
+    }
+    .cta-banner h2 { margin-bottom: 0.6rem; }
+    .cta-banner p  { color: var(--gray-2); font-size: 0.96rem; }
+    .cta-banner-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      align-items: flex-end;
+      flex-shrink: 0;
+    }
+
+    /* ============================================================
+       STICKY CTA BAR (MATTE FLAT — NO BLUR)
+    ============================================================ */
+    .sticky-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 700;
+      display: flex;
+      justify-content: center;
+      padding: 0 1rem 1.2rem;
+      pointer-events: none;
+    }
+    .sticky-bar-inner {
+      pointer-events: all;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding: 0.85rem 1rem 0.85rem 1.4rem;
+      background: var(--bg);
+      border: 1px solid var(--ink);
+      width: min(680px, 96%);
+      transform: translateY(100px);
+      opacity: 0;
+      transition:
+        transform 0.5s var(--ease-out),
+        opacity 0.4s ease;
+    }
+    .sticky-bar-inner.is-visible {
+      transform: none;
+      opacity: 1;
+    }
+    .sticky-bar-text {
+      font-size: 0.84rem;
+      color: var(--gray-2);
+      white-space: nowrap;
+      letter-spacing: -0.02em;
+    }
+    .sticky-bar-text strong {
+      background: var(--ink);
+      color: var(--bg);
+      padding: 0.1rem 0.4rem;
+      font-weight: 700;
+      margin-right: 0.3rem;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .footer {
+      border-top: 1px solid var(--stroke-1);
+      padding: 4.5rem 0 3rem;
+      background: var(--bg);
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3.5rem;
+    }
+    .nav-brand {
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: -0.04em;
+    }
+    .footer-brand-text {
+      font-size: 0.86rem;
+      color: var(--gray-3);
+      line-height: 1.6;
+      margin-top: 0.8rem;
+      max-width: 230px;
+    }
+    .footer-col h6 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      text-transform: lowercase;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .footer-col ul li a {
+      font-size: 0.84rem;
+      color: var(--gray-2);
+      transition: color var(--dur-fast) ease;
+    }
+    .footer-col ul li a:hover {
+      color: var(--ink);
+      text-decoration: underline;
+    }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--stroke-1);
+      padding-top: 1.5rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .footer-bottom p {
+      font-size: 0.76rem;
+      color: var(--gray-3);
+    }
+
+    /* ============================================================
+       POPUP MODAL (MATTE SWISS CARD — NO GLASS BLUR)
+    ============================================================ */
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(17,17,17,0.65);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity var(--dur-fast) ease, visibility var(--dur-fast);
+      padding: 1rem;
+    }
+    .popup-overlay.is-active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .popup-card {
+      background: var(--bg);
+      border: 1px solid var(--ink);
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 460px;
+      position: relative;
+      transform: translateY(12px);
+      opacity: 0;
+      transition: transform var(--dur-mid) var(--ease-out), opacity var(--dur-mid) ease;
+    }
+    .popup-overlay.is-active .popup-card {
+      transform: none;
+      opacity: 1;
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.4rem;
+      background: none;
+      border: none;
+      color: var(--ink);
+      font-size: 1.6rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .popup-top {
+      display: flex;
+      gap: 1.4rem;
+      margin-bottom: 2rem;
+    }
+
+    .popup-img-wrapper {
+      flex-shrink: 0;
+      width: 105px;
+      height: 105px;
+      overflow: hidden;
+      background: var(--surface-2);
+      border: 1px solid var(--stroke-1);
+    }
+    .popup-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .popup-info h4 {
+      font-size: 1.15rem;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.03em;
+    }
+    .popup-info p {
+      font-size: 0.85rem;
+      color: var(--gray-2);
+      line-height: 1.55;
+      margin-bottom: 1rem;
+    }
+
+    .popup-loc {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--gray-3);
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .popup-loc::before {
+      content: '';
+      display: block;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--ink);
+    }
+
+    .popup-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      border-top: 1px solid var(--stroke-1);
+      padding-top: 1.5rem;
+    }
+
+    @media (max-width: 480px) {
+      .popup-top { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .popup-actions { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       ROTARY BRAND SWITCHER (INSPIRED BY REF 4 ARC & DOT)
+    ============================================================ */
+    .brand-dial-container {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .brand-dial {
+      position: relative;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 1px solid var(--stroke-2);
+      cursor: pointer;
+      outline: none;
+      flex-shrink: 0;
+      transition: border-color var(--dur-fast) ease;
+    }
+    .brand-dial:hover {
+      border-color: var(--ink);
+    }
+
+    .dial-rotator {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      transition: transform 0.55s var(--ease-out);
+    }
+
+    .dial-indicator {
+      position: absolute;
+      top: 50%;
+      right: 5px;
+      width: 12px;
+      height: 1.5px;
+      background: var(--ink);
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+    .dial-indicator::after {
+      content: '';
+      position: absolute;
+      right: -2px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--ink);
+    }
+
+    .brand-labels {
+      display: flex;
+      flex-direction: column;
+      gap: 0.32rem;
+      justify-content: center;
+    }
+
+    .brand-label {
+      font-size: 0.54rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray-4);
+      line-height: 1;
+      white-space: nowrap;
+      transition: color var(--dur-fast) ease;
+    }
+
+    .brand-label.is-active {
+      color: var(--ink);
+    }
+
+    .brand-label:hover:not(.is-active) {
+      color: var(--gray-2);
+    }
+
+    @media (max-width: 640px) {
+      .brand-label { font-size: 0.45rem; }
+      .brand-dial { width: 36px; height: 36px; }
+      .dial-indicator { width: 10px; right: 4px; }
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1100px) {
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 900px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+
+      .featured-grid { grid-template-columns: 1fr; }
+      .featured-media { aspect-ratio: 16 / 9; min-height: unset; }
+      .featured-media img { position: relative; inset: unset; min-height: 260px; }
+      .featured-copy {
+        padding: 3.5rem 2.5rem;
+        border-left: none;
+        border-top: 1px solid var(--stroke-1);
+      }
+      .featured-specs { grid-template-columns: 1fr; }
+      .grid-products { grid-template-columns: 1fr 1fr; }
+
+      .story-row { grid-template-columns: 1fr; }
+      .story-row.is-reversed .story-media { order: 0; }
+      .story-row.is-reversed .story-copy  { order: 1; }
+      .story-media { min-height: 260px; }
+      .story-copy { padding: 3rem 2.5rem; }
+
+      .cta-banner-inner {
+        grid-template-columns: 1fr;
+        padding: 3.5rem 2.5rem;
+      }
+      .cta-banner-actions { align-items: flex-start; }
+    }
+
+    @media (max-width: 640px) {
+      .u-section { padding: 4.5rem 0; }
+      .grid-products { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .products-header { flex-direction: column; align-items: flex-start; }
+      .featured-specs { grid-template-columns: 1fr 1fr; }
+      .proof-quote { padding: 3rem 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       CURSOR
+  ============================================================ -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- ============================================================
+       LOADING SCREEN
+  ============================================================ -->
+  <div id="loader">
+    <div class="loader-brand">A-Z IRON<sup style="font-size:0.5rem;letter-spacing:0.06em;color:var(--gray-3);font-weight:600;margin-left:2px;">DROP</sup></div>
+    <div class="loader-bar-track">
+      <div class="loader-bar-fill" id="loaderBar"></div>
+    </div>
+    <div class="loader-counter" id="loaderCounter">0%</div>
+  </div>
+
+  <!-- ============================================================
+       NAVBAR
+  ============================================================ -->
+  <nav class="nav" id="nav">
+    <div class="u-container nav-inner">
+      
+      <!-- Rotary Brand Switcher -->
+      <div class="brand-dial-container" id="brandDialContainer">
+        <button class="brand-dial" id="brandDialBtn" aria-label="Switch Company">
+          <div class="dial-rotator" id="dialRotator">
+            <span class="dial-indicator"></span>
+          </div>
+        </button>
+        <div class="brand-labels">
+          <a href="https://gemini.google.com/" target="_blank" rel="noopener" class="brand-label" data-index="0">HBI STEEL AND AGRO SOLUTIONS</a>
+          <a href="#" class="brand-label is-active" data-index="1">A_Z IRON TRADERS</a>
+          <a href="https://www.youtube.com/" target="_blank" rel="noopener" class="brand-label" data-index="2">HADEED ENGENEERING SOLUTIONS</a>
+        </div>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="#story">Story</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#features">Why Us</a></li>
+        <li><a href="#proof">Reviews</a></li>
+      </ul>
+      <a class="btn btn-primary btn-sm nav-cta"
+         href="https://wa.me/7889512702?text=Hello%20there"
+         target="_blank" rel="noopener sponsored">
+        Chat now
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile drawer -->
+  <div class="nav-drawer" id="navDrawer">
+    <a href="#story"    class="nav-drawer-link">Story</a>
+    <a href="#products" class="nav-drawer-link">Products</a>
+    <a href="#features" class="nav-drawer-link">Why Us</a>
+    <a href="#proof"    class="nav-drawer-link">Reviews</a>
+    <a href="https://wa.me/7889512702?text=Hello%20there"
+       target="_blank" rel="noopener sponsored"
+       class="nav-drawer-link">
+      Chat now↗
+    </a>
+  </div>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <header class="hero" id="heroSection">
+    <div class="hero-orb" aria-hidden="true"></div>
+    <div class="hero-grain" aria-hidden="true"></div>
+    <div class="hero-grid-lines" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <div class="hero-swiss-top">
+        <span class="swiss-cross">+</span>
+        <span>A_Z IRON TRADERS — AWANTIPORA</span>
+        <span>EDITION 2026</span>
+      </div>
+
+      <div class="hero-eyebrow" data-reveal="fade">
+        <span class="hero-eyebrow-dot" aria-hidden="true"></span>
+        iron featured
+      </div>
+
+      <h1 class="t-display hero-title" aria-label="Premium finds. Curated for you.">
+        <span class="line">
+          <span class="line-inner" id="heroLine1">Premium finds.</span>
+        </span>
+        <span class="line">
+          <span class="line-inner line-accent" id="heroLine2">Curated for you.</span>
+        </span>
+      </h1>
+
+      <p class="t-body hero-sub" data-reveal="up" data-delay="3">
+        Discover pure IRON products with an emotional, minimal experience.
+        Every piece is selected for its design, quality, and lasting impact.
+      </p>
+
+      <div class="hero-actions" data-reveal="up" data-delay="4">
+        <a class="btn btn-primary" href="#products">
+          Explore Collection
+        </a>
+        <a class="btn btn-ghost"
+           href="tel:+1234567890"
+           target="_blank" rel="noopener sponsored">
+          CALL FOR ORDER
+        </a>
+      </div>
+
+      <div class="hero-swiss-bottom">
+        <span>pure-grade structural &amp; architectural iron</span>
+        <span class="swiss-cross">+</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         FEATURED PRODUCT
+    ============================================================ -->
+    <section class="featured">
+      <div class="featured-grid">
+        <div class="featured-media" data-reveal="fade">
+          <img loading="lazy"
+               src=""
+               alt="Featured IRON product" />
+        </div>
+        <div class="featured-copy">
+          <div class="featured-label" data-reveal="left">
+            <span class="u-label">Featured Product</span>
+          </div>
+          <h2 class="t-h1" data-reveal="up" data-delay="1">Pure-Grade<br>IRON.</h2>
+          <p class="t-body" data-reveal="up" data-delay="2">
+             has the personality of an unyielding, grounded
+             realist—strong, enduring, and sharp, yet vulnerable
+             to the slow erosion of rust if left unprotected.
+          </p>
+          <div data-reveal="up" data-delay="3">
+            <a class="btn btn-primary"
+               href="https://www.amazon.com/dp/XXXXXXXX?tag=yourtag-20"
+               target="_blank" rel="noopener sponsored">
+              Chat now
+            </a>
+          </div>
+          <div class="featured-specs" data-reveal="up" data-delay="4">
+            <div class="spec-item">
+              <div class="spec-val">AWANTIPORA</div>
+              <div class="spec-lbl">Pulwama</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-val">PIN</div>
+              <div class="spec-lbl">192122</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-val">Kashmir</div>
+              <div class="spec-lbl">India</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PRODUCT GRID
+    ============================================================ -->
+    <section class="u-section" id="products">
+      <div class="u-container">
+        <div class="products-header">
+          <div>
+            <p class="u-label" data-reveal="up" style="margin-bottom:0.6rem;">+ collection</p>
+            <h2 class="t-h1" data-reveal="up" data-delay="1">Premium Picks</h2>
+          </div>
+          <a class="btn btn-ghost" data-reveal="fade" data-delay="2" href="products.html">
+            View All
+          </a>
+        </div>
+
+        <div class="grid-products">
+
+          <a class="product-card" data-reveal="up"
+             href=""
+             target="_blank" rel="noopener sponsored">
+            <div class="card-media">
+              <span class="card-badge">Best Seller</span>
+              <img loading="lazy"
+                   src=""
+                   alt="Featured IRON product">
+            </div>
+            <div class="card-body">
+              <p class="card-cat">01 / Item 1</p>
+              <h4>Product name</h4>
+              <p>product discription</p>
+              <span class="card-cta">Select order <span class="card-cta-arrow">→</span></span>
+            </div>
+          </a>
+
+          <a class="product-card" data-reveal="up" data-delay="1"
+             href=""
+             target="_blank" rel="noopener sponsored">
+            <div class="card-media">
+              <span class="card-badge">Limited Stock</span>
+              <img loading="lazy"
+                   src=""
+                   alt="Featured-product">
+            </div>
+            <div class="card-body">
+              <p class="card-cat">02 / Item 2</p>
+              <h4>Product name</h4>
+              <p>Product discription</p>
+              <span class="card-cta">Select Order <span class="card-cta-arrow">→</span></span>
+            </div>
+          </a>
+
+          <a class="product-card" data-reveal="up" data-delay="2"
+             href=""
+             target="_blank" rel="noopener sponsored">
+            <div class="card-media">
+              <span class="card-badge">trending</span>
+              <img loading="lazy"
+                   src=""
+                   alt="Signature Fragrance">
+            </div>
+            <div class="card-body">
+              <p class="card-cat">03 / Item 3</p>
+              <h4>product name</h4>
+              <p>product discription</p>
+              <span class="card-cta">Select order <span class="card-cta-arrow">→</span></span>
+            </div>
+          </a>
+
+          <a class="product-card" data-reveal="up"
+             href="https://www.amazon.com/dp/XXXXXXXX?tag=yourtag-20"
+             target="_blank" rel="noopener sponsored">
+            <div class="card-media">
+              <span class="card-badge">for quality</span>
+              <img loading="lazy"
+                   src=""
+                   alt="Featured product">
+            </div>
+            <div class="card-body">
+              <p class="card-cat">04 / Item 4</p>
+              <h4>Product name</h4>
+              <p>product discription</p>
+              <span class="card-cta">Select order <span class="card-cta-arrow">→</span></span>
+            </div>
+          </a>
+
+          <a class="product-card" data-reveal="up" data-delay="1"
+             href=""
+             target="_blank" rel="noopener sponsored">
+            <div class="card-media">
+              <span class="card-badge">Top Rated</span>
+              <img loading="lazy"
+                   src=""
+                   alt="FEATURED Product">
+            </div>
+            <div class="card-body">
+              <p class="card-cat">05 / Our choice</p>
+              <h4>product name</h4>
+              <p>prdouct discription.</p>
+              <span class="card-cta">Select order <span class="card-cta-arrow">→</span></span>
+            </div>
+          </a>
+
+          <a class="product-card" data-reveal="up" data-delay="2"
+             href=""
+             target="_blank" rel="noopener sponsored">
+            <div class="card-media">
+              <span class="card-badge">Pin #1</span>
+              <img loading="lazy"
+                   src=""
+                   alt="Compact Power Station">
+            </div>
+            <div class="card-body">
+              <p class="card-cat">06 / offer</p>
+              <h4>Product name</h4>
+              <p>140W output. Your entire setup, unplugged. Smaller than a book.</p>
+              <span class="card-cta">Select now <span class="card-cta-arrow">→</span></span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="u-container"><hr class="u-divider"></div>
+
+    <!-- ============================================================
+         EDITORIAL STORY
+    ============================================================ -->
+    <section class="u-section" id="story">
+      <div class="u-container">
+        <p class="u-label" data-reveal="up" style="margin-bottom:0.6rem;">+ how we think</p>
+        <h2 class="t-h1" data-reveal="up" data-delay="1" style="margin-bottom:3rem;">
+          One product.<br>One story.
+        </h2>
+
+        <div class="story-rows">
+          <div class="story-row">
+            <div class="story-media" data-reveal="left">
+              <div class="story-media-parallax" data-parallax="0.12">
+                <img loading="lazy"
+                     src=""
+                     alt="Premium items">
+              </div>
+            </div>
+            <div class="story-copy" data-reveal="right">
+              <p class="story-num">01</p>
+              <h3 class="t-h2">Only the<br>extraordinary.</h3>
+              <p>We evaluate thousands of products and surface the ones that pass a rigorous three-part filter: design, durability, and the feeling it gives you the moment you hold it.</p>
+              <div>
+                <a class="btn btn-ghost"
+                   href=""
+                   target="_blank" rel="noopener sponsored">
+                  Explore Picks
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="story-row is-reversed">
+            <div class="story-media" data-reveal="right">
+              <div class="story-media-parallax" data-parallax="0.1">
+                <img loading="lazy"
+                     src=""
+                     alt="Featured prdouct">
+              </div>
+            </div>
+            <div class="story-copy" data-reveal="left">
+              <p class="story-num">02</p>
+              <h3 class="t-h2">Details that<br>earn silence.</h3>
+              <p>Luxury is never loud. It's the weight of a lid closing, the resistance of a button click, the grain of a finish under light. We obsess over these things so you don't have to.</p>
+              <div>
+                <a class="btn btn-ghost"
+                   href=""
+                   target="_blank" rel="noopener sponsored">
+                  View Products
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SOCIAL PROOF
+    ============================================================ -->
+    <section class="u-section" id="proof">
+      <div class="u-container">
+        <p class="u-label" data-reveal="up" style="margin-bottom:0.8rem;">+ iron quote</p>
+
+        <div class="proof-quote" data-reveal="scale">
+          <em class="proof-mark" aria-hidden="true">"</em>
+          <blockquote>
+            "I've feel it to be premium as ORE.
+            The page felt like opening a GEM of IRONS."
+          </blockquote>
+          <p class="proof-author">— DIRECT CALL ORDERS</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CTA BANNER
+    ============================================================ -->
+    <section class="u-section" style="padding-top:0;">
+      <div class="u-container">
+        <div class="cta-banner" data-reveal="scale">
+          <div class="cta-banner-inner">
+            <div>
+              <h2 class="t-h2" style="margin-bottom:0.6rem;">Ready to elevate<br>your collection?</h2>
+              <p>Limited deals end soon. Direct to Amazon. No sign-up required.</p>
+            </div>
+            <div class="cta-banner-actions">
+              <a class="btn btn-primary"
+                 href="tel:+1234567890"
+                 target="_blank" rel="noopener sponsored">
+                Shop on call 
+              </a>
+              <a class="btn btn-ghost btn-sm" href="#products">
+                Browse Collection
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       STICKY BAR
+  ============================================================ -->
+  <div class="sticky-bar" aria-label="Quick shop">
+    <div class="sticky-bar-inner" id="stickyBar">
+      <p class="sticky-bar-text">
+        <strong>Limited Deal</strong> — Today's top pick is trending on Pinterest
+      </p>
+      <a class="btn btn-primary btn-sm"
+         href=""
+         target="_blank" rel="noopener sponsored">
+        Write your order 
+      </a>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       ORDER POPUP
+  ============================================================ -->
+  <div class="popup-overlay" id="orderPopup" aria-hidden="true">
+    <div class="popup-card">
+      <button class="popup-close" aria-label="Close popup">×</button>
+
+      <div class="popup-top">
+        <div class="popup-img-wrapper">
+          <img src="" alt="Product" id="popupImg">
+        </div>
+        <div class="popup-info">
+          <h4 id="popupTitle">Product Name</h4>
+          <p id="popupDesc">Product description</p>
+          <div class="popup-loc">Ships from: AWANTIPORA, Pulwama</div>
+        </div>
+      </div>
+
+      <div class="popup-actions">
+        <a href="tel:+917889512702" class="btn btn-ghost btn-sm">Dial on phone</a>
+        <a href="https://wa.me/7889512702?text=Hello,%20I%20would%20like%20to%20order" class="btn btn-primary btn-sm">Chat on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer">
+    <div class="u-container">
+      <div class="footer-top">
+        <div>
+          <a class="nav-brand" href="#">A_Z<sup>IRON</sup></a>
+          <p class="footer-brand-text">
+            chosen with Precision and quality
+          </p>
+        </div>
+        <div class="footer-col">
+          <h6>Collection</h6>
+          <ul>
+            <li><a href="#">Item name</a></li>
+            <li><a href="#">Item name</a></li>
+            <li><a href="#">Item name</a></li>
+            <li><a href="#">Item name</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h6>Company</h6>
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Location</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <div class="footer-bottom">
+            <p>© A_Z IRON TRADERS</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT (ALL FUNCTIONS INTACT, MAGNETIC/TILT REMOVED)
+  ============================================================ -->
+  <script>
+  (() => {
+    'use strict';
+
+    /* ── Helpers ── */
+    const qs  = (sel, ctx = document) => ctx.querySelector(sel);
+    const qsa = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+
+    /* ─────────────────────────────────────────────
+       LOADER
+    ───────────────────────────────────────────── */
+    const loader  = qs('#loader');
+    const loaderBar  = qs('#loaderBar');
+    const loaderCounter = qs('#loaderCounter');
+    let prog = 0;
+    
+    if (loader) {
+      const loaderInterval = setInterval(() => {
+        const step = prog < 70 ? (Math.random() * 8 + 4) : (Math.random() * 3 + 1);
+        prog = Math.min(prog + step, 100);
+        if (loaderBar) loaderBar.style.width = prog + '%';
+        if (loaderCounter) loaderCounter.textContent = Math.floor(prog) + '%';
+        
+        if (prog >= 100) {
+          clearInterval(loaderInterval);
+          setTimeout(() => {
+            loader.classList.add('is-hidden');
+            setTimeout(() => {
+              const h1 = qs('#heroLine1');
+              const h2 = qs('#heroLine2');
+              if (h1) h1.classList.add('is-visible');
+              if (h2) setTimeout(() => h2.classList.add('is-visible'), 120);
+            }, 200);
+            observeReveal();
+          }, 400);
+        }
+      }, 50);
+    } else {
+      observeReveal();
+    }
+
+    /* ─────────────────────────────────────────────
+       CUSTOM CURSOR
+    ───────────────────────────────────────────── */
+    const cursorDot  = qs('#cursor-dot');
+    const cursorRing = qs('#cursor-ring');
+    let cursorX = -100, cursorY = -100, ringX = -100, ringY = -100;
+    let rafCursor;
+
+    if (cursorDot && cursorRing) {
+      document.addEventListener('mousemove', e => {
+        cursorX = e.clientX; cursorY = e.clientY;
+        cursorDot.style.left = cursorX + 'px'; cursorDot.style.top  = cursorY + 'px';
+      });
+
+      function animRing() {
+        ringX += (cursorX - ringX) * 0.15; ringY += (cursorY - ringY) * 0.15;
+        cursorRing.style.left = ringX + 'px'; cursorRing.style.top  = ringY + 'px';
+        rafCursor = requestAnimationFrame(animRing);
+      }
+      animRing();
+
+      const hoverEls = 'a, button, .product-card, .spec-item, .brand-dial, .brand-label';
+      document.addEventListener('mouseover', e => {
+        if (e.target.closest(hoverEls)) cursorRing.classList.add('is-hovering');
+      });
+      document.addEventListener('mouseout', e => {
+        if (e.target.closest(hoverEls)) cursorRing.classList.remove('is-hovering');
+      });
+    }
+
+    /* ─────────────────────────────────────────────
+       NAVBAR & MOBILE MENU
+    ───────────────────────────────────────────── */
+    const nav = qs('#nav');
+    window.addEventListener('scroll', () => {
+      if (nav) nav.classList.toggle('is-scrolled', window.scrollY > 48);
+    }, { passive: true });
+
+    const hamburger = qs('#hamburger');
+    const drawer    = qs('#navDrawer');
+
+    if (hamburger && drawer) {
+      hamburger.addEventListener('click', () => {
+        const open = hamburger.classList.toggle('is-open');
+        drawer.classList.toggle('is-open', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+        hamburger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      });
+      qsa('.nav-drawer-link').forEach(a => {
+        a.addEventListener('click', () => {
+          hamburger.classList.remove('is-open');
+          drawer.classList.remove('is-open');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+
+    /* ─────────────────────────────────────────────
+       SCROLL REVEAL & STICKY BAR
+    ───────────────────────────────────────────── */
+    function observeReveal() {
+      const items = qsa('[data-reveal]');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+      items.forEach(el => io.observe(el));
+    }
+
+    const stickyBar  = qs('#stickyBar');
+    const heroSection = qs('#heroSection');
+    if (stickyBar && heroSection) {
+      const stickyIo = new IntersectionObserver(entries => {
+        stickyBar.classList.toggle('is-visible', !entries[0].isIntersecting);
+      }, { threshold: 0.3 });
+      stickyIo.observe(heroSection);
+    }
+
+    /* ─────────────────────────────────────────────
+       PARALLAX
+    ───────────────────────────────────────────── */
+    const parallaxEls = qsa('[data-parallax]');
+    let ticking = false;
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          parallaxEls.forEach(el => {
+            const rate = parseFloat(el.dataset.parallax) || 0.1;
+            const media = el.closest('.story-media');
+            if (media) {
+              const rect = media.getBoundingClientRect();
+              const center = rect.top + rect.height / 2 - window.innerHeight / 2;
+              el.style.transform = `translateY(${center * rate}px)`;
+            }
+          });
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    /* ─────────────────────────────────────────────
+       REDUCED MOTION RESPECT
+    ───────────────────────────────────────────── */
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.style.setProperty('--dur-slow', '0.01s');
+      document.documentElement.style.setProperty('--dur-cinema', '0.01s');
+      qsa('[data-reveal]').forEach(el => el.classList.add('is-visible'));
+      if (rafCursor) cancelAnimationFrame(rafCursor);
+    }
+    
+    /* ─────────────────────────────────────────────
+       POPUP LOGIC
+    ───────────────────────────────────────────── */
+    const popup = qs('#orderPopup');
+    const popupClose = qs('.popup-close', popup);
+    const popupImg = qs('#popupImg', popup);
+    const popupTitle = qs('#popupTitle', popup);
+    const popupDesc = qs('#popupDesc', popup);
+    const orderBtns = qsa('.card-cta'); 
+
+    orderBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault(); 
+        const card = btn.closest('.product-card');
+        const imgSrc = qs('img', card).src;
+        const title = qs('h4', card).textContent;
+        const desc = qs('p:not(.card-cat)', card).textContent;
+
+        if (popupImg) popupImg.src = imgSrc;
+        if (popupTitle) popupTitle.textContent = title;
+        if (popupDesc) popupDesc.textContent = desc;
+
+        if (popup) {
+          popup.classList.add('is-active');
+          document.body.style.overflow = 'hidden'; 
+        }
+      });
+    });
+
+    function closePopup() {
+      if (popup) {
+        popup.classList.remove('is-active');
+        document.body.style.overflow = ''; 
+      }
+    }
+
+    if (popupClose) popupClose.addEventListener('click', closePopup);
+    if (popup) {
+      popup.addEventListener('click', (e) => {
+        if (e.target === popup) closePopup();
+      });
+    }
+
+    /* ─────────────────────────────────────────────
+       ROTARY BRAND SWITCHER LOGIC
+    ───────────────────────────────────────────── */
+    const brandDialBtn = qs('#brandDialBtn');
+    const dialRotator = qs('#dialRotator');
+    const brandLabels = qsa('.brand-label');
+
+    let currentBrandIndex = 1; 
+
+    function updateBrandDial(index) {
+      currentBrandIndex = index;
+
+      brandLabels.forEach((label, i) => {
+        label.classList.toggle('is-active', i === index);
+      });
+
+      let angle = 0;
+      if (index === 0) angle = -32;
+      else if (index === 2) angle = 32;
+
+      if (dialRotator) {
+        dialRotator.style.transform = `rotate(${angle}deg)`;
+      }
+    }
+
+    if (brandDialBtn) {
+      brandDialBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        const rect = brandDialBtn.getBoundingClientRect();
+        const clickY = e.clientY - rect.top;
+        const halfHeight = rect.height / 2;
+
+        const targetIndex = clickY < halfHeight ? 0 : 2;
+        
+        updateBrandDial(targetIndex);
+        
+        setTimeout(() => {
+          const targetHref = brandLabels[targetIndex]?.href;
+          if (targetHref) {
+            window.open(targetHref, '_blank', 'noopener');
+          }
+          setTimeout(() => updateBrandDial(1), 500); 
+        }, 200); 
+      });
+    }
+
+    brandLabels.forEach((label, i) => {
+      label.addEventListener('click', (e) => {
+        if (i === 1) {
+          e.preventDefault(); 
+        } else {
+          updateBrandDial(i);
+          setTimeout(() => updateBrandDial(1), 800);
+        }
+      });
+    });
+  })();
+  </script>
+
+</body>
+</html>
